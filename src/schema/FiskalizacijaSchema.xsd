@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="http://www.apis-it.hr/fin/2012/types/f73"
-  xmlns:tns="http://www.apis-it.hr/fin/2012/types/f73"
-  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-  elementFormDefault="qualified" version="1.2">
+        targetNamespace="http://www.apis-it.hr/fin/2012/types/f73"
+        xmlns:tns="http://www.apis-it.hr/fin/2012/types/f73"
+        xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+        elementFormDefault="qualified" version="1.2">
 
   <import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
 
@@ -118,7 +118,7 @@
   <complexType name="ZaglavljeType">
     <sequence>
       <element name="IdPoruke" type="tns:UUIDType" minOccurs="1"
-        maxOccurs="1">
+               maxOccurs="1">
         <annotation>
           <documentation>
             Odabrati:
@@ -135,7 +135,7 @@
         </annotation>
       </element>
       <element name="DatumVrijeme" type="tns:DatumVrijemeType"
-        minOccurs="1" maxOccurs="1">
+               minOccurs="1" maxOccurs="1">
         <annotation>
           <documentation>
             Datum i vrijeme slanja poruke.
@@ -163,14 +163,14 @@
           </documentation>
         </annotation>
         <simpleType>
-			<restriction base="string">
-				<minLength value="0"/>
-				<maxLength value="36"/>
-			</restriction>
+          <restriction base="string">
+            <minLength value="0"/>
+            <maxLength value="36"/>
+          </restriction>
         </simpleType>
       </element>
       <element name="DatumVrijeme" type="tns:DatumVrijemeType"
-        minOccurs="1" maxOccurs="1">
+               minOccurs="1" maxOccurs="1">
         <annotation>
           <documentation>
             Datum i vrijeme obrade poruke.
@@ -297,9 +297,9 @@
       <element name="ZastKod" minOccurs="1" maxOccurs="1">
         <annotation>
           <documentation>
-          Zastitni kod izdavatelja.
-          Zastitni kod izdavatelja obveznika fiskalizacije je alfanumericki zapis kojim se potvrdjuje veza izmedju obveznika fiskalizacije
-          i izdanog racuna. Zastitni kod generira obveznik fiskalizacije.
+            Zastitni kod izdavatelja.
+            Zastitni kod izdavatelja obveznika fiskalizacije je alfanumericki zapis kojim se potvrdjuje veza izmedju obveznika fiskalizacije
+            i izdanog racuna. Zastitni kod generira obveznik fiskalizacije.
           </documentation>
         </annotation>
         <simpleType>
@@ -344,6 +344,211 @@
           <restriction base="string">
             <minLength value="1" />
             <maxLength value="1000" />
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+
+  <complexType name="RacunPDType">
+    <sequence>
+      <element name="Oib" type="tns:OibType" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Osobni identifikacijski broj obveznika fiskalizacije.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="USustPdv" type="boolean" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            U sustavu PDV. Oznaka je li obveznik fiskalizacije u sustavu PDV ili nije.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="DatVrijeme" type="tns:DatumVrijemeType" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Datum i vrijeme izdavanja racuna koji se ispisuju na racunu.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="OznSlijed" type="tns:OznakaSlijednostiType" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Oznaka slijednosti izdavanja racuna. Slijednost izdavanja racuna moze biti na razini poslovnog prostora ili naplatnog uredjaja.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="BrRac" type="tns:BrojRacunaType" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Broj racuna.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="Pdv" type="tns:PdvType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Porez na dodanu vrijednost.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="Pnp" type="tns:PorezNaPotrosnjuType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Porez na potrosnju.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="OstaliPor" type="tns:OstaliPoreziType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Ostali porezi.
+            Navode se ostali porezi koji se mogu pojaviti na racunu osim PDV-a i poreza na potrosnju.
+            Npr. porez na luksuz.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="IznosOslobPdv" type="tns:IznosType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Iznos oslobodjenja na racunu.
+            Ako se isporucuju dobra ili obavljaju usluge koje su oslobodjene od placanja PDV-a,
+            potrebno je poslati ukupan iznos oslobodjenja na racunu.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="IznosMarza" type="tns:IznosType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Iznos na koji se odnosi posebni postupka oporezivanja marze na racunu.
+            Marza za rabljena dobra, umjetnicka djela, kolekcionarske ili antikne predmete (clanak 22.a Zakona o PDV-u).
+          </documentation>
+        </annotation>
+      </element>
+      <element name="IznosNePodlOpor" type="tns:IznosType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Iznos koji ne podlijeze oporezivanju na racunu.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="Naknade" type="tns:NaknadeType" minOccurs="0" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Naknade koje se mogu pojaviti na racunu tipa povratna naknada za ambalazu i sl.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="IznosUkupno" type="tns:IznosType" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Ukupan iznos koji se iskazuje na racunu.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="NacinPlac" type="tns:NacinPlacanjaType" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Moguce vrijednosti su G - gotovina, K - kartice, C - cek,  T - transakcijski racun, O – ostalo.
+            U slucaju vise nacina placanja po jednom racunu, isto je potrebno prijaviti pod O - ostalo.
+            Za sve nacine placanja koji nisu propisani koristiti ce se oznaka O – ostalo.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="OibOper" type="tns:OibType" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Osobni identifikacijski broj operatera na naplatnom uredjaju koji izdaje racun.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="ZastKod" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Zastitni kod izdavatelja.
+            Zastitni kod izdavatelja obveznika fiskalizacije je alfanumericki zapis kojim se potvrdjuje veza izmedju obveznika fiskalizacije
+            i izdanog racuna. Zastitni kod generira obveznik fiskalizacije.
+          </documentation>
+        </annotation>
+        <simpleType>
+          <restriction base="string">
+            <pattern value="[a-f0-9]{32}"/>
+            <length value="32" />
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="NakDost" type="boolean" minOccurs="1" maxOccurs="1" >
+        <annotation>
+          <documentation>
+            Oznaka naknadne dostave racuna.
+            Obvezno se dostavlja u slucaju naknadne dostave racuna kad je isti prethodno izdan kupcu
+            bez JIR-a (prekid Internet veze ili potpuni prestanak rada naplatnog uredjaja).
+          </documentation>
+        </annotation>
+      </element>
+      <element name="ParagonBrRac" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Oznaka paragon racuna.
+            Obavezno se dostavlja u slucaju potpunog prestanka rada naplatnog uredjaja kada obveznik fiskalizacije
+            mora prepisati izdane paragon racune i prijaviti ih putem poruke Poreznoj upravi.
+          </documentation>
+        </annotation>
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1" />
+            <maxLength value="100" />
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="SpecNamj" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Specificna namjena.
+            Predvidjeno za slucaj da se naknadno pojavi potreba za dostavom podataka koji nisu prepoznati tokom analize.
+          </documentation>
+        </annotation>
+        <simpleType>
+          <restriction base="string">
+            <minLength value="1" />
+            <maxLength value="1000" />
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="PrateciDokument" type="tns:PrateciDokument" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            JIR i ZK preateceg dokumenta
+          </documentation>
+        </annotation>
+      </element>
+
+    </sequence>
+  </complexType>
+
+  <complexType name="PrateciDokument">
+    <sequence>
+      <element name="JirPD" type="tns:UUIDType" minOccurs="0"
+               maxOccurs="1">
+        <annotation>
+          <documentation>JIR prateceg dokumenta
+          </documentation>
+        </annotation>
+      </element>
+      <element name="ZastKodPD" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Zastitni kod prateceg dokumenta izdavatelja.
+            Zastitni kod izdavatelja obveznika fiskalizacije je alfanumericki zapis kojim se potvrdjuje veza izmedju obveznika fiskalizacije
+            i izdanog racuna. Zastitni kod generira obveznik fiskalizacije.
+          </documentation>
+        </annotation>
+        <simpleType>
+          <restriction base="string">
+            <pattern value="[a-f0-9]{32}"/>
+            <length value="32" />
           </restriction>
         </simpleType>
       </element>
@@ -404,10 +609,10 @@
       <element name="SpecNamj" minOccurs="0" maxOccurs="1">
         <annotation>
           <documentation>
-				Potrebno je dostaviti jedan od podataka u nastavku:
-					- OIB pravne ili fizicke osobe koja je proizvela programsko rjesenje ili
-					- OIB pravne ili fizicke osobe koja odrzava programsko rjesenje ili
-					- OIB pravne ili fizicke osobe prodavatelja u slucaju da se koristi rjesenje od stranog proizvodaca – bez lokalnog partnera
+            Potrebno je dostaviti jedan od podataka u nastavku:
+            - OIB pravne ili fizicke osobe koja je proizvela programsko rjesenje ili
+            - OIB pravne ili fizicke osobe koja odrzava programsko rjesenje ili
+            - OIB pravne ili fizicke osobe prodavatelja u slucaju da se koristi rjesenje od stranog proizvodaca – bez lokalnog partnera
           </documentation>
         </annotation>
         <simpleType>
@@ -461,7 +666,7 @@
   <complexType name="GreskeType">
     <sequence>
       <element name="Greska" type="tns:GreskaType" minOccurs="1"
-        maxOccurs="unbounded" />
+               maxOccurs="unbounded" />
     </sequence>
   </complexType>
 
@@ -479,9 +684,9 @@
   <complexType name="GreskaType">
     <sequence>
       <element name="SifraGreske" type="tns:SifraGreskeType"
-        minOccurs="1" maxOccurs="1" />
+               minOccurs="1" maxOccurs="1" />
       <element name="PorukaGreske" type="tns:PorukaGreskeType"
-        minOccurs="1" maxOccurs="1" />
+               minOccurs="1" maxOccurs="1" />
     </sequence>
   </complexType>
 
@@ -530,7 +735,7 @@
   <complexType name="NaknadeType">
     <sequence>
       <element name="Naknada" type="tns:NaknadaType" minOccurs="1"
-        maxOccurs="unbounded" />
+               maxOccurs="unbounded" />
     </sequence>
   </complexType>
 
@@ -562,21 +767,21 @@
   <complexType name="OstaliPoreziType">
     <sequence>
       <element name="Porez" type="tns:PorezOstaloType"
-        minOccurs="1" maxOccurs="unbounded" />
+               minOccurs="1" maxOccurs="unbounded" />
     </sequence>
   </complexType>
 
   <complexType name="PorezNaPotrosnjuType">
     <sequence>
       <element name="Porez" type="tns:PorezType" minOccurs="1"
-        maxOccurs="unbounded" />
+               maxOccurs="unbounded" />
     </sequence>
   </complexType>
 
   <complexType name="PdvType">
     <sequence>
       <element name="Porez" type="tns:PorezType" minOccurs="1"
-        maxOccurs="unbounded" />
+               maxOccurs="unbounded" />
     </sequence>
   </complexType>
 
@@ -729,14 +934,14 @@
     <restriction base="string">
       <length value="19" />
       <pattern
-        value="[0-9]{2}.[0-9]{2}.[1-2][0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}" />
+              value="[0-9]{2}.[0-9]{2}.[1-2][0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}" />
     </restriction>
   </simpleType>
 
   <simpleType name="UUIDType">
     <restriction base="string">
       <pattern
-        value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
+              value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" />
     </restriction>
   </simpleType>
 
